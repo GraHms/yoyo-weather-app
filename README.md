@@ -30,3 +30,11 @@ Once `pip` has finished downloading the dependencies:
 (env)$ python manage.py runserver
 ```
 And navigate to `http://127.0.0.1:8000/api/locations/maputo/days=3`.
+
+## Tests
+
+To run the tests, `cd` into the directory where `manage.py` is:
+```sh
+(env)$ python manage.py test weatherapi
+```
+
