@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseModel, Field
 
 
@@ -8,13 +6,6 @@ class ErrorResponse(BaseModel):
     code: str
     reason: str
     message: str
-
-
-class WeatherObject(BaseModel):
-    maximum: int
-    minimum: int
-    average: int
-    median: int
 
 
 class WeatherRequestParams(BaseModel):
