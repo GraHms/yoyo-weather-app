@@ -15,9 +15,9 @@ from yoyoweatherapp.settings import WEATHER_API_KEY
 def compute_temperatures(weatherlist):
 
     # we take the first maximum as result
-    max_temp = weatherlist['day'][0]["maxtemp_c"]
+    max_temp = weatherlist[0]['day']["maxtemp_c"]
     # we take the first days avg temperature as defaull
-    min_temp = weatherlist['day'][0]["mintemp_c"]
+    min_temp = weatherlist[0]['day']["mintemp_c"]
     all_avg_temp = []
     for res in weatherlist:
         _max_temp = res['day']["maxtemp_c"]
