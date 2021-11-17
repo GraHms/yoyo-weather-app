@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from weatherapi.schemas import WeatherRequestParams
 from weatherapi.serializers import WeatherSerializer
 
-# The method that fe
+
 from yoyoweatherapp.settings import WEATHER_API_KEY
 
 
@@ -58,6 +58,6 @@ def weather_view(request, city):
 
     weather_data = get_weather(input_values=input_values)
     result: WeatherSerializer = WeatherSerializer(data=weather_data)
-    result.is_valid()
+    result.is_valid(raise_exception=True)
 
     return Response(result.data)
