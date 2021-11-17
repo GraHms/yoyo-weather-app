@@ -1,13 +1,13 @@
 import logging
 
 import requests
+from django.http import JsonResponse
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, StaticHTMLRenderer
 from rest_framework.response import Response
 
 from weatherapi.schemas import WeatherRequestParams
 from weatherapi.serializers import WeatherSerializer
-
 
 from yoyoweatherapp.settings import WEATHER_API_KEY
 
@@ -39,7 +39,7 @@ def get_weather(input_values: WeatherRequestParams):
                 else:
                     if _min_temp < min_temp:
                         min_temp = _min_temp
-
+            # calculates median
             median_temp = (max_temp + min_temp) / 2
             # Average temperature = Sum of temperatures of all the days / *no. of days
             avg_temp = sum(all_avg_temp) / days
@@ -47,7 +47,8 @@ def get_weather(input_values: WeatherRequestParams):
                     "median": round(median_temp, 2)}
             return data
     except Exception as err:
-        logging.ERROR(err)
+        logging.exception(err)
+        JsonResponse({"message": err}, status=500)
 
 
 @api_view(['GET'])
@@ -59,5 +60,5 @@ def weather_view(request, city):
     weather_data = get_weather(input_values=input_values)
     result: WeatherSerializer = WeatherSerializer(data=weather_data)
     result.is_valid(raise_exception=True)
-
+    logging.log(result.data)
     return Response(result.data)

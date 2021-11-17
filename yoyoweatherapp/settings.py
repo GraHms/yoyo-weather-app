@@ -17,9 +17,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 from os import getenv
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-5v1^!m2$=(7)+2c0-)nm78$4kmr%&xa%k$6i-ruev*5il4^g_8'
 WEATHER_API_KEY = getenv("WEATHER_API_KEY", default="5d2d198db1f84484b4271600211711")
