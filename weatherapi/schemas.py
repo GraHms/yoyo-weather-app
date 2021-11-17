@@ -1,13 +1,7 @@
 from pydantic import BaseModel, Field
 
 
-# defines the  schema to be used
-class ErrorResponse(BaseModel):
-    code: str
-    reason: str
-    message: str
-
-
 class WeatherRequestParams(BaseModel):
+    # the default value for days is 1
     days: int = Field(1)
     city: str
